@@ -28,6 +28,7 @@ textBox.addEventListener(`input`, (e) => {
     document.querySelector(`.totalChar`).innerText = textBox.value.length;
     
     let wordSet = textBox.value;
+    // using regular expression to no of words
     wordSet = wordSet.match( /\w+/g );
     console.log(wordSet);
     
