@@ -1,13 +1,27 @@
+// selct text input box
 let textBox = document.querySelector(`.textBox`);
-textBox.addEventListener(`keydown input`, () => counter(event));
 let wordCount = 0;
+let charCount = 0;
 
-function counter() {
-    console.log("Test Ok");
-    if(event.keycode == 8){
-     console.log(`Backspace`);     
+textBox.addEventListener(`keydown`, (e) => {
+    console.log(`${e.keyCode} ${e.key} is pressed`);
+
+    if (e.keyCode == 8 && charCount > 0) {
+        console.log(`Backspace is trapped`);
+        charCount -= 1;
+        document.querySelector(`.totalChar`).innerText = charCount.toString();
+        return;
     }
-    wordCount += 1;
-    document.querySelector(`.totalWords`).innerText = wordCount.toString();
-    console.log(wordCount);
-}
+
+    if (e.keyCode != 8 && e.keyCode != 32) {
+        charCount += 1;
+        document.querySelector(`.totalChar`).innerText = charCount.toString();
+        console.log(charCount);
+    }
+    
+    if (e.keyCode == 32) {
+        wordCount += 1;
+        document.querySelector(`.totalWords`).innerText = wordCount.toString();
+    }
+});
+
